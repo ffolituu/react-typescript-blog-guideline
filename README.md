@@ -1,58 +1,98 @@
-# Branche : Architecture pattern
+# Branche : Layout pattern
 
-## Organisation des dossiers et fichiers du projet
+## Design de l'application
 
-Bien que React nous laisse libre choix d'organiser et de structurer un projet. L'architecture que nous proposons permet de maintenir un cycle de vie d'une application React sain et bien organisé de sorte à ce qu'un développeur ou une équipe de développeur travaille dans de meilleurs conditions.
+![Structure du dossier](./src/assets/docs/design-hp.JPG)
+Le visuel ci-dessus représente notre page d'accueil de blog minimaliste. L'objectif de cette branche est de vous guider étape par étape de toute la décomposition de la structure sous forme de composants.
 
-Lorsque vous développez une page dans une application React, pensez à la diviser en éléments modulaires. Cela vous aidera à réduire la complexité et à créer des structures ouvertes pour être réutilisables ou partagées dans l'ensemble de l'application.
+## 1 - Décomposition de la structure pour notre layout
 
-### Arborescence :
+![Structure du dossier](./src/assets/docs/design-hp-components-parent.JPG)
 
-![Structure du dossier](./src/assets/docs/structure.JPG)
+Cette étape sucite à détecter tous les composants primaires qui seront susceptibles d'accueillir de nouveaux composants.
 
-## Dossier **assets**
+Pour cette application nous avons recenser 3 composants primaires qui constitueront notre layout :
 
-Ce dossier contiendra des images de notre application
+- Header
+- Section
+- Footer
 
-## Dossier **components**
+> Si le design de votre application est différente, cette idée de décomposition pourra grandement vous aider.
 
-Ce dossier contiendra tout une liste de composants réutilisables :
+## 2 - Décomposition des composants en profondeur
 
-- Composant Header
-- Composant Navbar
-- Composant Footer
-- Composant Button
-- Composant Filter
-- ...
+### Composant Header
 
-## Dossier **context**
+![Structure du dossier](./src/assets/docs/design-hp-components-children-header.JPG)
+Pour le composant Header viendront se greffer 2 autres composants :
 
-Habituellement, vous passerez des informations d'un composant parent à un composant enfant via des accessoires. Mais passer des accessoires peut devenir verbeux et peu pratique si vous devez les passer à travers de nombreux composants au milieu, ou si de nombreux composants de votre application ont besoin des mêmes informations. Le contexte permet au composant parent de mettre des informations à la disposition de n'importe quel composant de l'arborescence en dessous, quelle que soit sa profondeur, sans les transmettre explicitement via les props.
+- Brand
+- NavLink
 
-La solution serait d'utiliser dans ce dossier, soit :
+### Composant Section
 
-- [React context](https://fr.reactjs.org/docs/context.html)
-- [Redux](https://redux.js.org/)
-- [Recoil](https://recoiljs.org/fr/)
+![Structure du dossier](./src/assets/docs/section-components.JPG)
+Pour le composant Section viendront se greffer 2 autres composants :
 
-## Dossier **hooks**
+- About
+- Blog
 
-Un crochet React réutilisable est comme une pièce de travail réutilisable. Tout comme vous créez des composants personnalisés, la création d'un hook personnalisé peut aider à réduire la complexité du code.
+Si nous allons plus, nous pouvons décortiquer d'avantage plus en profondeur ces 2 nouveaux composants :
 
-> Ex de hook : La bascule d'un mot de passe visible ou pas suite à un clic sur une icône (afficher/masquer)
+### Composant About
 
-Ce hook sera donc réutilisable dans le cas ou ce champ est visible dans différentes pages.
+Si l'on épluche correctement ce composant, nous nous retrouvons avec une liste de valeurs :
 
-[Pour plus d'infos ](https://blog.openreplay.com/react-architecture-patterns-for-your-projects)
+- Un titre
+- Un sous-titre
+- Une bordure
+- Un paragraphe
+- Une bordure
 
-## Dossier **pages**
+Par rapport à ce que nous avons recenser, la première question à se poser est la suivante :
 
-Ce dossier contiendra tous les fichiers dédiés à l'interface utilisateur
+- Est-ce qu'il y a un intérêt à vouloir les mettre sous forme de composants ?
 
-## Dossier **utils**
+> La réponse est non ! Ces valeurs pourront être nommées comme des **accessoires** que nous verrons dans une prochaine branche.
 
-Un répertoire facultatif, il peut contenir des constantes et des méthodes d'assistance à l'échelle de l'application. Par exemple, plusieurs composants d'interface utilisateur dans votre application peuvent nécessiter une logique de validation. Séparer cette logique métier de validation dans son propre fichier dans le dossier **/utils** cela vous aidera à créer des flux séparés.
+### Composant Blog
 
-## Dossier **api**
+Comme pour le composant About nous nous retrouvons avec une liste de valeurs :
 
-Servira de pont entre l'application et les données externes de l'application
+- Un titre
+- Un sous-titre
+- Une liste de News avec plusieurs autres valeurs distinctent à l'intérieur
+- Un bouton rouge
+
+Donc toujours en liaison avec notre liste ci-dessus, ne pas oublier de se poser la même question :
+
+- Est-ce qu'il ya un intérêt à vouloir les mettre sous forme de composants.
+
+Si nous examinons bien le composant blog, on s'aperçoit qu'il ya une duplication de news; et donc nous pouvons effectivement la décliner sous forme de composant.
+
+> Rappel de la fonction d'un composant : Permet de diviser l'interface utilisateur en éléments indépendants et réutilisables.
+
+![Structure du dossier](./src/assets/docs/components-blog.JPG)
+
+Pour conclure, nous obtenons de nouveaux 2 composants a rajouter dans notre application :
+
+- BlogItem
+- Button
+
+### Composant Footer
+
+N'ayant qu'une seule valeur, ce composant nécessite aucun autre composant.
+
+## Conclusion
+
+Le fait d'éclater notre application sous forme de composant, nous arrivons à un total de 9 composants :
+
+- Header
+- Section
+- Footer
+- Brand
+- NavLink
+- About
+- Blog
+- BlogItem
+- Button
