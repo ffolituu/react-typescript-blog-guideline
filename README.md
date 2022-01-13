@@ -28,23 +28,9 @@ Cette branche liste l'organisation et la structure de dossier et fichier au sein
 
 [`Branch: layout-pattern`](https://github.com/ffolituu/react-typescript-blog-guideline/tree/layout-pattern)
 
-Pour cette application, nous utiliserons le Framework Css Bootstrap pour le modèle de mise en page. Libre à vous de choisir d'autre Framework Css.
+Pour un début de projet, il est essentiel de séparer toute la structure du design de l'application sous forme de composanant. Les composants vous permettent de diviser l'interface utilisateur en éléments indépendants et réutilisables.
 
-```
-> npm i bootstrap
-```
-
-ou
-
-```
-> yarn add bootstrap
-```
-
-La branche layout-pattern liste différents composants :
-
-- Composant "Layout"
-- Composant "Navbar"
-- Composant "Footer"
+Cette branche fournit une introduction des composants de départ pour un développement plus fluide.
 
 ## Branche Router
 
