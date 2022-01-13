@@ -1,6 +1,6 @@
-# Branche : init
+# Branche : Architecture pattern
 
-## L'initaliation du projet.
+## Organisation des dossiers et fichiers
 
 Un point de départ pour commencer une application React.
 
